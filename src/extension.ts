@@ -45,6 +45,24 @@ export function activate(context: vscode.ExtensionContext) {
 
     context.subscriptions.push(addCommentDisposable);
 
+    // 注册命令，用于删除注释
+    const deleteCommentDisposable = vscode.commands.registerCommand('extension.deleteComment', async (uri: vscode.Uri) => {
+        if (workspaceFolder) {
+            const relativePath = path.relative(workspaceFolder.uri.fsPath, uri.fsPath);
+            if (relativePath in cachedComments) {
+                delete cachedComments[relativePath];
+                fs.writeFileSync(commentFilePath, JSON.stringify(cachedComments, null, 2), 'utf8');
+                vscode.window.showInformationMessage(`Comment deleted from ${relativePath}`);
+                commentDecorationProvider.fire(uri);
+                updateEditorDecorations();
+            } else {
+                vscode.window.showInformationMessage(`No comment found for ${relativePath}`);
+            }
+        }
+    });
+
+    context.subscriptions.push(deleteCommentDisposable);
+
     // 注册命令，用于切换徽章显示
     const toggleBadgeDisposable = vscode.commands.registerCommand('extension.toggleBadge', () => {
         showBadge = !showBadge;
@@ -92,7 +110,7 @@ export function activate(context: vscode.ExtensionContext) {
                 if (comment && showBadge) {
                     return {
                         badge: '💬',
-                        tooltip: comment
+                        tooltip: comment 
                     };
                 }
             }
@@ -134,14 +152,37 @@ export function activate(context: vscode.ExtensionContext) {
             });
         });
     }
+
+    // 初始化时刷新注释
+    updateBadgeButton();
+    updateEditorDecorations();
 }
 
 function updateEditorDecorations() {
-    // Implement the logic to update editor decorations
+    // 实现更新编辑器装饰器的逻辑
     if (showComments) {
-        // Add code to update decorations when comments are enabled
+        // 添加代码以在启用注释时更新装饰器
+        vscode.window.visibleTextEditors.forEach(editor => {
+            const decorations: vscode.DecorationOptions[] = [];
+            const filePath = editor.document.uri.fsPath;
+            if (filePath in cachedComments) {
+                decorations.push({
+                    range: new vscode.Range(0, 0, 0, 0), // 示例位置
+                    renderOptions: {
+                        after: {
+                            contentText: cachedComments[filePath],
+                            color: 'gray'
+                        }
+                    }
+                });
+            }
+            editor.setDecorations(vscode.window.createTextEditorDecorationType({}), decorations);
+        });
     } else {
-        // Add code to clear decorations when comments are disabled
+        // 添加代码以在禁用注释时清除装饰器
+        vscode.window.visibleTextEditors.forEach(editor => {
+            editor.setDecorations(vscode.window.createTextEditorDecorationType({}), []);
+        });
     }
 }
 

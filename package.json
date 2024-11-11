@@ -9,7 +9,10 @@
   "categories": [
     "Other"
   ],
-  "activationEvents": [],
+  "activationEvents": [
+    "onStartupFinished",
+    "workspaceContains:.comment/.comment"
+  ],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
@@ -20,12 +23,20 @@
       {
         "command": "extension.toggleBadge",
         "title": "Toggle Badge"
+      },
+      {
+        "command": "extension.deleteComment",
+        "title": "Delete Comment"
       }
     ],
     "menus": {
       "explorer/context": [
         {
           "command": "extension.addComment",
+          "group": "navigation"
+        },
+        {
+          "command": "extension.deleteComment",
           "group": "navigation"
         }
       ]
