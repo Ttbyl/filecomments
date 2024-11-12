@@ -1,71 +1,64 @@
-# helloword README
+# FileComments
 
-This is the README for your extension "helloword". After writing up a brief description, we recommend including the following sections.
+FileComments is a Visual Studio Code extension that allows you to add, edit, and delete comments in files, and display these comments in the file explorer.
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+- Add comments to files
+- Edit existing comments
+- Delete comments
+- Toggle comment display
+- Display comments in the file explorer
+- Customize comment styles
 
-For example if there is an image subfolder under your extension project workspace:
+## Installation
 
-\!\[feature X\]\(images/feature-x.png\)
+1. Clone this repository to your local machine:
+   ```sh
+   git clone <repository-url>
+   ```
+2. Navigate to the project directory and install dependencies:
+   ```sh
+   cd filecomments
+   npm install
+   ```
+3. Compile the extension:
+   ```sh
+   npm run compile
+   ```
+4. Open the project directory in VS Code and press `F5` to run the extension.
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+## Usage
 
-## Requirements
+### Add Comment
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+1. Right-click on a file in the file explorer and select `Add Comment`.
+2. Choose the comment type and enter the comment content.
 
-## Extension Settings
+### Edit Comment
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+1. Find the file with the comment in the file explorer.
+2. Right-click on the file and select `Edit Comment`.
 
-For example:
+### Delete Comment
 
-This extension contributes the following settings:
+1. Find the file with the comment in the file explorer.
+2. Right-click on the file and select `Delete Comment`.
 
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+### Toggle Comment Display
 
-## Known Issues
+Click the `Toggle Comments` button in the status bar to toggle the display of comments.
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+## Customize Comment Styles
 
-## Release Notes
+You can extend the default comment styles by adding custom styles in `settings.json`:
 
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
----
-
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+```json
+"fileComments.customStyles": {
+    "customStyle": {
+        "icon": "🔧",
+        "color": "charts.purple",
+        "label": "Custom"
+    }
+}
+```
