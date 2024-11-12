@@ -1,6 +1,6 @@
 {
-  "name": "file_comment",
-  "displayName": "FileComments",
+  "name": "FilesComments",
+  "displayName": "Files Comments",
   "description": "LEAVE BLANK",
   "version": "0.0.1",
   "engines": {
