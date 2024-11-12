@@ -1,6 +1,6 @@
 {
-  "name": "helloword",
-  "displayName": "HelloWorld",
+  "name": "file_comment",
+  "displayName": "FileComments",
   "description": "LEAVE BLANK",
   "version": "0.0.1",
   "engines": {
@@ -21,23 +21,63 @@
         "title": "Add Comment"
       },
       {
-        "command": "extension.toggleBadge",
-        "title": "Toggle Badge"
-      },
-      {
         "command": "extension.deleteComment",
         "title": "Delete Comment"
+      },
+      {
+        "command": "extension.toggleComments",
+        "title": "Toggle Comments"
+      },
+      {
+        "command": "extension.editComment",
+        "title": "Edit Comment"
+      },
+      {
+        "command": "extension.quickDeleteComment",
+        "title": "Remove Comment"
       }
     ],
     "menus": {
       "explorer/context": [
         {
           "command": "extension.addComment",
-          "group": "navigation"
+          "title": "Add Comment",
+          "group": "navigation@999"
         },
         {
+          "command": "extension.quickDeleteComment",
+          "title": "Remove Comment",
+          "group": "navigation@999"
+        }
+      ],
+      "view/item/context": [
+        {
           "command": "extension.deleteComment",
-          "group": "navigation"
+          "when": "view == fileComments && viewItem == commentItem",
+          "group": "inline"
+        },
+        {
+          "command": "extension.editComment",
+          "when": "view == fileComments && viewItem == commentItem",
+          "group": "inline"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "File Comments",
+      "properties": {
+        "fileComments.customStyles": {
+          "type": "object",
+          "default": {},
+          "description": "Custom comment styles. Format: { \"styleName\": { \"icon\": \"emoji\", \"color\": \"themeColor\", \"label\": \"Display Name\" } }"
+        }
+      }
+    },
+    "views": {
+      "explorer": [
+        {
+          "id": "fileComments",
+          "name": "File Comments"
         }
       ]
     }
