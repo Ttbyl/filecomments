@@ -15,7 +15,7 @@ FileComments 是一个 Visual Studio Code 扩展，允许您在文件中添加�
 
 1. 克隆此仓库到本地：
     ```sh
-    git clone <repository-url>
+    git clone https://github.com/Ttbyl/filecomments.git
     ```
 2. 进入项目目录并安装依赖：
     ```sh

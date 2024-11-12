@@ -1,5 +1,8 @@
 # FileComments
 
+
+English | [简体中文](https://github.com/Ttbyl/filecomments/blob/master/README-zh.md)
+
 FileComments is a Visual Studio Code extension that allows you to add, edit, and delete comments in files, and display these comments in the file explorer.
 
 ## Features
@@ -15,7 +18,7 @@ FileComments is a Visual Studio Code extension that allows you to add, edit, and
 
 1. Clone this repository to your local machine:
    ```sh
-   git clone <repository-url>
+   git clone https://github.com/Ttbyl/filecomments.git
    ```
 2. Navigate to the project directory and install dependencies:
    ```sh
